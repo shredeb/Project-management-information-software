@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b4a5d70db7445f89af1346a6579a62e" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectManagementDBModel.BusinessUnit" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.Department" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.Designation" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.Project" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.ProjectDetail" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.ProjectTeamMember" Width="1.5" PointX="7.5" PointY="1.875" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.UserProfile" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_BusinessUnit" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_UserProfile_Department" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_UserProfile_Designation" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_Project" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile1" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile2" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectTeamMember_ProjectDetail" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectTeamMember_UserProfile" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.BusinessCritica" Width="1.5" PointX="5.375" PointY="7" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_BusinessCritica" />
+        <EntityTypeShape EntityType="ProjectManagementDBModel.ProjectURL" Width="1.5" PointX="7.375" PointY="6" />
+        <AssociationConnector Association="ProjectManagementDBModel.FK_ProjectDetail_ProjectURL" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

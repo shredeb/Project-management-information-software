@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProjectManagementDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BusinessUnits" EntityType="ProjectManagementDBModel.BusinessUnit" />
+    <EntitySet Name="Departments" EntityType="ProjectManagementDBModel.Department" />
+    <EntitySet Name="Designations" EntityType="ProjectManagementDBModel.Designation" />
+    <EntitySet Name="Projects" EntityType="ProjectManagementDBModel.Project" />
+    <EntitySet Name="ProjectDetails" EntityType="ProjectManagementDBModel.ProjectDetail" />
+    <EntitySet Name="ProjectTeamMembers" EntityType="ProjectManagementDBModel.ProjectTeamMember" />
+    <EntitySet Name="UserProfiles" EntityType="ProjectManagementDBModel.UserProfile" />
+    <AssociationSet Name="FK_ProjectDetail_BusinessUnit" Association="ProjectManagementDBModel.FK_ProjectDetail_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Department" Association="ProjectManagementDBModel.FK_UserProfile_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Designation" Association="ProjectManagementDBModel.FK_UserProfile_Designation">
+      <End Role="Designation" EntitySet="Designations" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_Project" Association="ProjectManagementDBModel.FK_ProjectDetail_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile" Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile1" Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile1">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile2" Association="ProjectManagementDBModel.FK_ProjectDetail_UserProfile2">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTeamMember_ProjectDetail" Association="ProjectManagementDBModel.FK_ProjectTeamMember_ProjectDetail">
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+      <End Role="ProjectTeamMember" EntitySet="ProjectTeamMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTeamMember_UserProfile" Association="ProjectManagementDBModel.FK_ProjectTeamMember_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="ProjectTeamMember" EntitySet="ProjectTeamMembers" />
+    </AssociationSet>
+    <EntitySet Name="BusinessCriticas" EntityType="ProjectManagementDBModel.BusinessCritica" />
+    <AssociationSet Name="FK_ProjectDetail_BusinessCritica" Association="ProjectManagementDBModel.FK_ProjectDetail_BusinessCritica">
+      <End Role="BusinessCritica" EntitySet="BusinessCriticas" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <EntitySet Name="ProjectURLs" EntityType="ProjectManagementDBModel.ProjectURL" />
+    <AssociationSet Name="FK_ProjectDetail_ProjectURL" Association="ProjectManagementDBModel.FK_ProjectDetail_ProjectURL">
+      <End Role="ProjectURL" EntitySet="ProjectURLs" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BusinessUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementDBModel.FK_ProjectDetail_BusinessUnit" FromRole="BusinessUnit" ToRole="ProjectDetail" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserProfiles" Relationship="ProjectManagementDBModel.FK_UserProfile_Department" FromRole="Department" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserProfiles" Relationship="ProjectManagementDBModel.FK_UserProfile_Designation" FromRole="Designation" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementDBModel.FK_ProjectDetail_Project" FromRole="Project" ToRole="ProjectDetail" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="BusinessUnitId" Type="Int32" />
+    <Property Name="ProjectManagerId" Type="Int32" />
+    <Property Name="TeamLeadId" Type="Int32" />
+    <Property Name="BusinessCriticaId" Type="Int32" />
+    <Property Name="ProductOwnerId" Type="Int32" />
+    <Property Name="TFS" Type="Boolean" />
+    <Property Name="ProjectURLId" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BusinessUnit" Relationship="ProjectManagementDBModel.FK_ProjectDetail_BusinessUnit" FromRole="ProjectDetail" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Project" Relationship="ProjectManagementDBModel.FK_ProjectDetail_Project" FromRole="ProjectDetail" ToRole="Project" />
+    <NavigationProperty Name="UserProfile" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile" FromRole="ProjectDetail" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile1" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile1" FromRole="ProjectDetail" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile2" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile2" FromRole="ProjectDetail" ToRole="UserProfile" />
+    <NavigationProperty Name="ProjectTeamMembers" Relationship="ProjectManagementDBModel.FK_ProjectTeamMember_ProjectDetail" FromRole="ProjectDetail" ToRole="ProjectTeamMember" />
+    <NavigationProperty Name="BusinessCritica" Relationship="ProjectManagementDBModel.FK_ProjectDetail_BusinessCritica" FromRole="ProjectDetail" ToRole="BusinessCritica" />
+    <NavigationProperty Name="ProjectURL" Relationship="ProjectManagementDBModel.FK_ProjectDetail_ProjectURL" FromRole="ProjectDetail" ToRole="ProjectURL" />
+  </EntityType>
+  <EntityType Name="ProjectTeamMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectDetailId" Type="Int32" />
+    <Property Name="TeamMemberId" Type="Int32" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProjectDetail" Relationship="ProjectManagementDBModel.FK_ProjectTeamMember_ProjectDetail" FromRole="ProjectTeamMember" ToRole="ProjectDetail" />
+    <NavigationProperty Name="UserProfile" Relationship="ProjectManagementDBModel.FK_ProjectTeamMember_UserProfile" FromRole="ProjectTeamMember" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="DesignationId" Type="Int32" />
+    <Property Name="PFnumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <NavigationProperty Name="Department" Relationship="ProjectManagementDBModel.FK_UserProfile_Department" FromRole="UserProfile" ToRole="Department" />
+    <NavigationProperty Name="Designation" Relationship="ProjectManagementDBModel.FK_UserProfile_Designation" FromRole="UserProfile" ToRole="Designation" />
+    <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile" FromRole="UserProfile" ToRole="ProjectDetail" />
+    <NavigationProperty Name="ProjectDetails1" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile1" FromRole="UserProfile" ToRole="ProjectDetail" />
+    <NavigationProperty Name="ProjectDetails2" Relationship="ProjectManagementDBModel.FK_ProjectDetail_UserProfile2" FromRole="UserProfile" ToRole="ProjectDetail" />
+    <NavigationProperty Name="ProjectTeamMembers" Relationship="ProjectManagementDBModel.FK_ProjectTeamMember_UserProfile" FromRole="UserProfile" ToRole="ProjectTeamMember" />
+  </EntityType>
+  <Association Name="FK_ProjectDetail_BusinessUnit">
+    <End Type="ProjectManagementDBModel.BusinessUnit" Role="BusinessUnit" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="BusinessUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Department">
+    <End Type="ProjectManagementDBModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Designation">
+    <End Type="ProjectManagementDBModel.Designation" Role="Designation" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_Project">
+    <End Type="ProjectManagementDBModel.Project" Role="Project" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile">
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="TeamLeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile1">
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProductOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile2">
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTeamMember_ProjectDetail">
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectTeamMember" Role="ProjectTeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTeamMember">
+        <PropertyRef Name="ProjectDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTeamMember_UserProfile">
+    <End Type="ProjectManagementDBModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectTeamMember" Role="ProjectTeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTeamMember">
+        <PropertyRef Name="TeamMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BusinessCritica">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementDBModel.FK_ProjectDetail_BusinessCritica" FromRole="BusinessCritica" ToRole="ProjectDetail" />
+  </EntityType>
+  <Association Name="FK_ProjectDetail_BusinessCritica">
+    <End Type="ProjectManagementDBModel.BusinessCritica" Role="BusinessCritica" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCritica">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="BusinessCriticaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProjectURL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Boolean" />
+    <Property Name="EntryBy" Type="Int32" />
+    <Property Name="UpdateBy" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementDBModel.FK_ProjectDetail_ProjectURL" FromRole="ProjectURL" ToRole="ProjectDetail" />
+  </EntityType>
+  <Association Name="FK_ProjectDetail_ProjectURL">
+    <End Type="ProjectManagementDBModel.ProjectURL" Role="ProjectURL" Multiplicity="0..1" />
+    <End Type="ProjectManagementDBModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectURL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectURLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

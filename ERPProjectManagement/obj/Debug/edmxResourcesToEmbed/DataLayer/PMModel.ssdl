@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BusinessCritica">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusinessUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="Remarks" Type="varchar" MaxLength="500" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="BusinessUnitId" Type="int" />
+    <Property Name="ProjectManagerId" Type="int" />
+    <Property Name="TeamLeadId" Type="int" />
+    <Property Name="BusinessCriticaId" Type="int" />
+    <Property Name="ProductOwnerId" Type="int" />
+    <Property Name="TFS" Type="bit" />
+    <Property Name="ProjectURLId" Type="int" />
+    <Property Name="Remarks" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ProjectTeamMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectDetailId" Type="int" />
+    <Property Name="TeamMemberId" Type="int" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProjectURL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+    <Property Name="EntryBy" Type="int" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="DesignationId" Type="int" />
+    <Property Name="PFnumber" Type="varchar" MaxLength="100" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="100" />
+    <Property Name="CStatus" Type="bit" />
+  </EntityType>
+  <Association Name="FK_ProjectDetail_BusinessCritica">
+    <End Role="BusinessCritica" Type="Self.BusinessCritica" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCritica">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="BusinessCriticaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="BusinessUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_ProjectURL">
+    <End Role="ProjectURL" Type="Self.ProjectURL" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectURL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectURLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="TeamLeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile1">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProductOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetail_UserProfile2">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="ProjectManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTeamMember_ProjectDetail">
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="0..1" />
+    <End Role="ProjectTeamMember" Type="Self.ProjectTeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTeamMember">
+        <PropertyRef Name="ProjectDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectTeamMember_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="ProjectTeamMember" Type="Self.ProjectTeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTeamMember">
+        <PropertyRef Name="TeamMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectManagementDBModelStoreContainer">
+    <EntitySet Name="BusinessCritica" EntityType="Self.BusinessCritica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessUnit" EntityType="Self.BusinessUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectDetail" EntityType="Self.ProjectDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectTeamMember" EntityType="Self.ProjectTeamMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectURL" EntityType="Self.ProjectURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProjectDetail_BusinessCritica" Association="Self.FK_ProjectDetail_BusinessCritica">
+      <End Role="BusinessCritica" EntitySet="BusinessCritica" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_BusinessUnit" Association="Self.FK_ProjectDetail_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnit" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_Project" Association="Self.FK_ProjectDetail_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_ProjectURL" Association="Self.FK_ProjectDetail_ProjectURL">
+      <End Role="ProjectURL" EntitySet="ProjectURL" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile" Association="Self.FK_ProjectDetail_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile1" Association="Self.FK_ProjectDetail_UserProfile1">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetail_UserProfile2" Association="Self.FK_ProjectDetail_UserProfile2">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTeamMember_ProjectDetail" Association="Self.FK_ProjectTeamMember_ProjectDetail">
+      <End Role="ProjectDetail" EntitySet="ProjectDetail" />
+      <End Role="ProjectTeamMember" EntitySet="ProjectTeamMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTeamMember_UserProfile" Association="Self.FK_ProjectTeamMember_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ProjectTeamMember" EntitySet="ProjectTeamMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Department" Association="Self.FK_UserProfile_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Designation" Association="Self.FK_UserProfile_Designation">
+      <End Role="Designation" EntitySet="Designation" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
